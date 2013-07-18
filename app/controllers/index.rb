@@ -5,12 +5,13 @@ end
 
 post '/shorten' do
   p params
-  Url.create(long: params[:long])
+  dbcly = Url.create(long: params[:long])
+  p dbcly.errors.full_messages.join(',')
   redirect '/'
 end
 
 get '/url_click/:id' do |id|
-  num = Url.find(id).clicks
-  Url.find(id).update_attributes(clicks: num + 1)
-  redirect(Url.find(id).long)
+  url = Url.find(id)
+  url.update_attribute(:clicks, url.clicks + 1)
+  redirect(url.long)
 end
