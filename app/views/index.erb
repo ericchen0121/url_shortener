@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Welcome to the new dbc.ly!</h1>
+  <p>What are dbcmarks?</p>
+
+  <form action="/shorten" method="post">
+    Url to shorten: <input type="text" name="long" value="http://www."><br><br>
+    <button id='submit'>Shorten</button><br><br>
+  </form>
+  
+  
+  <div id='dbcmarks'>
+    <% if @urls %>
+      <% @urls.each do |url| %>
+        <div id='dbcmark'>      
+        <p id="long"><a href= <%=url.long %>><%=url.long%></a></p>
+        <p id="short"><a href="/url_click/<%=url.id%>"><%=url.short.gsub(/^.{11}/,'') %></a> <i>Clicks: <%=url.clicks.to_s%></i></p>
+        </div><br>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
+
