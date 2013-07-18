@@ -17,18 +17,13 @@ $(document).ready(function() {
         // effect('shake', 'left',200,10);
         $(this).parents('#dbcmark').delay(500).animate({
           backgroundColor: "rgba(175, 238,238, .5)" }, "slow");
-      };
 
-      // CODE IS SLIGHTLY BROKEN..... Tried to move if out of if.
-      if (any_repeats.length < 1){
-        $.post('/shorten', {long: submission}).done(function()
-          { 
-            setTimeout(function() { location.reload();}, 100);  
-          }
-        );
-      };
+        if (any_repeats.length < 1){
+          $.post('/shorten', {long: submission}).done(function()
+            { setTimeout(function() { location.reload();}, 100);
+          });
+        }
+      }
     });
   });
 });
-
-
